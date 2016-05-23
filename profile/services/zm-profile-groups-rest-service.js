@@ -8,7 +8,7 @@
 
   /** zmProfileGroupRestService is rets service for CURD */
   function zmProfileGroupRestService($http,$q,$log){
-    var base_url = 'group.json';
+    var base_url = 'profile/group.json';
     var vm = this;
     /** Methods */
     vm.readListOfGroups = readListOfGroups;
