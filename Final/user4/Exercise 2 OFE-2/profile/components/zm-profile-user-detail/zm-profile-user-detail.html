@@ -1,0 +1,245 @@
+<div class="profile-box friends md-whiteframe-1dp white-bg" layout="column" ng-hide="vm.viewMode">
+      <header class="md-accent-bg">
+        <div class="title" translate="CONTACT.DETAIL" style="display: inline-block">Detail</div><md-icon id="edit-contact" ng-click="vm.editUserProfile($event)" md-font-icon="icon-pencil"
+        style="cursor: pointer;float: right"
+        class="ng-isolate-scope md-font icon-cog material-icons md-default-theme white-fg"></md-icon>
+      </header>
+      <md-card class="nowhiteframe" flex="25" ng-if="vm.selected !== false">
+        <md-card-header>
+          <md-card-avatar>
+            <img class="avatar" ng-src="{{vm.selected.avatar}}">
+          </md-card-avatar>
+        </md-card-header>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{vm.about.contact.firstname}} {{vm.about.contact.lastname}}</span>
+            <md-tabs md-dynamic-height>
+              <md-tab label="Personal Details">
+
+                <div class="profile-box info-box personal" layout="column">
+
+                  <div class="content">
+
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.FIRSTNAME">First Name</div>
+                      <div class="info">{{vm.about.contact.firstname}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.contact.firstname" placeholder="First Name" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.LASTNAME">Last Name</div>
+                      <div class="info">{{vm.about.contact.lastname}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.contact.lastname" placeholder="Last Name" required>
+                      </md-input-container>
+                    </div>
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.JOB">Occupation</div>
+                      <div class="info">{{vm.about.contact.occupation}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.contact.occupation" placeholder="Occupation" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.STREET">Street</div>
+                      <div class="info">{{vm.about.contact.street}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.contact.street" placeholder="Street" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.ADDITION">Addition</div>
+                      <div class="info">{{vm.about.contact.addition}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.contact.addition" placeholder="Addition" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.POSTALCODE">Postal Code</div>
+                      <div class="info">{{vm.about.contact.postalcode}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.contact.postalcode" placeholder="Postal Code" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.LOCATIONS">Location</div>
+                      <div class="info location">{{vm.about.contact.location}}
+                      </div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.contact.location" placeholder="Locations" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title">Province</div>
+                      <div class="info location">{{vm.about.contact.province}}
+                      </div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.contact.location" placeholder="Locations" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.COUNTRY">Country</div>
+                      <div class="info">{{vm.about.contact.country}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.contact.country" placeholder="Country" required>
+                      </md-input-container>
+                    </div>
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.TEL">Phone</div>
+                      <div class="info">{{vm.about.contact.tel}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.contact.tel" placeholder="Phone" required>
+                      </md-input-container>
+                    </div>
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.FAX">Fax</div>
+                      <div class="info">{{vm.about.contact.fax}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.contact.fax" placeholder="Phone" required>
+                      </md-input-container>
+                    </div>
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.MOBILE">Mobile</div>
+                      <div class="info">{{vm.about.contact.mobile}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.contact.mobile" placeholder="Phone" required>
+                      </md-input-container>
+
+                    </div>
+                  </div>
+                </div>
+
+                <md-button ng-if="vm.editContact !== false" class="md-raised md-accent" aria-label="LOG IN">
+                Save
+                </md-button>
+              </md-tab>
+
+
+              <md-tab label="Company Details">
+                <div class="profile-box info-box company" layout="column">
+
+                  <div class="content">
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.COMPANY">Company</div>
+                      <div class="info">{{vm.about.work.company}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.work.company" placeholder="Company" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.OCCUPATION">Business</div>
+                      <div class="info">{{vm.occupation.selected}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <md-select ng-model="vm.occupation.selected"
+                                   ng-change="vm.occupation.change(vm.occupation.selected)">
+                          <md-option style="color: black !important;"  ng-repeat="entry in vm.occupation.data">
+                            {{entry.name}}
+                          </md-option>
+                        </md-select>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.STREET">Street</div>
+                      <div class="info">{{vm.about.work.street}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.work.street" placeholder="Street" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.ADDITION">Addition</div>
+                      <div class="info">{{vm.about.work.addition}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.work.addition" placeholder="Addition" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.POSTALCODE">Postal Code</div>
+                      <div class="info">{{vm.about.work.postalcode}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.work.postalcode" placeholder="Postal Code" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.LOCATIONS">Location</div>
+                      <div class="info location">{{vm.about.work.location}}
+                      </div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.work.location" placeholder="Locations" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title">Location</div>
+                      <div class="info location">{{vm.about.work.province}}
+                      </div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.work.location" placeholder="Locations" required>
+                      </md-input-container>
+                    </div>
+
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.COUNTRY">Country</div>
+                      <div class="info">{{vm.about.work.country}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.work.country" placeholder="Country" required>
+                      </md-input-container>
+                    </div>
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.TEL">Phone</div>
+                      <div class="info">{{vm.about.work.tel}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.work.tel" placeholder="Phone" required>
+                      </md-input-container>
+                    </div>
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.FAX">Fax</div>
+                      <div class="info">{{vm.about.work.fax}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.work.fax" placeholder="Phone" required>
+                      </md-input-container>
+                    </div>
+                    <div class="info-line">
+                      <div class="title" translate="PROFILE.EMAIL">E-mail</div>
+                      <div class="info">{{vm.about.work.email}}</div>
+                      <md-input-container ng-if="vm.editContact !== false" class="md-block" md-no-float>
+                        <input type="text" name="gender" ng-model="vm.about.work.email" placeholder="Phone" required>
+                      </md-input-container>
+                    </div>
+                  </div>
+                </div>
+    <md-button ng-if="vm.editContact !== false " type="" class="md-raised md-accent" aria-label="LOG IN">
+      Save
+    </md-button>
+              </md-tab>
+            </md-tabs>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="start center">
+          <md-button ng-click="vm.DeleteUserDialog($event)">Delete</md-button>
+          <md-card-icon-actions>
+            <md-button class="md-icon-button" aria-label="toggle">
+              <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+            </md-button>
+          </md-card-icon-actions>
+        </md-card-actions>
+        <md-card-content>
+          <h3>Remarks</h3>
+          <text-angular ng-model="vm.selected.message"></text-angular>
+        </md-card-content>
+      </md-card>
+    </div>

@@ -1,0 +1,72 @@
+<div class="cummunity" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="65" style="padding-bottom: 20px;">
+  <div class="white-bg md-whiteframe-1dp">
+
+    <header class="md-accent-bg addusr" layout="row" layout-align="space-between center">
+
+      <div class="title">Users<div class="groupovrvw text-boxed red-bg white-fg m-0">10
+        members</div>
+      </div>
+
+      <!-- ADD CONTACT BUTTON -->
+      <md-button class="add-file-button md-fab md-warn inhead"
+      ng-click="vm.AddUserDialog($event)" aria-label="Add file" translate
+      translate-attr-aria-label="CONTACT.NEW">
+      <md-icon md-font-icon="icon-plus"></md-icon>
+    </md-button>
+    <!-- / ADD CONTACT BUTTON  -->
+
+  </header>
+  <table class="userstable dataTable row-border hover" datatable="ng" dt-options="vm.dtOptions">
+    <thead>
+      <tr>
+        <th>
+        </th>
+        <th class="secondary-text">
+          <div class="table-header">
+            <span class="column-title">Name</span>
+          </div>
+        </th>
+        <th class="secondary-text">
+          <div class="table-header">
+            <span class="column-title">Company</span>
+          </div>
+        </th>
+        <th class="secondary-text">
+          <div class="table-header">
+            <span class="column-title">Job title</span>
+          </div>
+        </th>
+        <th class="secondary-text">
+          <div class="table-header">
+            <span class="column-title">Town/City</span>
+          </div>
+        </th>
+        <th class="secondary-text">
+          <div class="table-header">
+            <span class="column-title"></span>
+          </div>
+        </th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="entry in vm.contacts" ng-click="vm.openDetailView(entry)">
+        <td><img class="avatar" ng-src="{{entry.avatar}}"></td>
+        <td>{{ entry.username }}</td>
+        <td>{{ entry.company }}</td>
+        <td>{{ entry.job }}</td>
+        <td>{{ entry.location }}</td>
+        <td>
+          <md-button class="add-file-button md-fab md-warn"
+          ng-click="vm.DeleteUserDialog($event)">
+          <md-icon md-font-icon="icon-block-helper"></md-icon>
+        </md-button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<div class="about-sidebar detailbox" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="33">
+<zm-profile-user-detail userid="vm.selectedUserId" on-update-user="vm.updateUser(user)" enable="true"></zm-profile-user-detail>
+</div>

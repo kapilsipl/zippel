@@ -1,0 +1,37 @@
+#profile{
+	#user-section{
+		zm-profile-user{
+			title{
+				background-color: #06A5E8;
+				height: 52px;
+				padding-left: 30px; 
+				padding-top: 20px;
+				.groupovrvw{
+					display: inline-block;
+				}
+			} 
+		}
+		.user-list-table{
+			width: 100%;
+			color: #242424;
+			font-size: 12px;
+			thead{
+				th{
+					font-size: 12px;
+					color: #808080;
+				}
+			}
+			tbody{
+				tr{
+					&:nth-child(even){
+						background-color:#fff;
+					}
+					&:nth-child(odd){
+						background-color:#f9f9f9;
+					}
+				}
+			}
+			
+		}
+	}
+}

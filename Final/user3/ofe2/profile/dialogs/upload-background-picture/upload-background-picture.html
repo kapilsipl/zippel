@@ -1,0 +1,59 @@
+<md-dialog class="upload-background-image" flex="30" aria-label="Upload Background Image">
+  <form class="md-inline-form">
+    <md-toolbar class="md-accent md-hue-2">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title">Upload Background Picture</span>
+        <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog" tranlate
+                   translate-aria-label="CONTACT.CLOSE_DIALOG">
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <md-card flex="100" style="height: 130px;">
+
+        <md-icon style="  opacity: 0.3;
+      width: 100% !important;
+      text-align: center;
+      font-size: 80px;" class="upload-drop" md-font-icon="icon-cloud-upload" ngf-drop ngf-select ng-model="vm.files"
+                 ngf-change="newFilesAdded($newFiles)" ngf-keep="'distinct'" ng-disabled="uploading"
+                 ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="false"></md-icon>
+
+
+
+      </md-card>
+      <md-card flex="90" ng-repeat="file in vm.files" style="display: inline-block">
+        <md-card-header>
+          <md-card-header-text>
+                    <span class="md-subhead">
+                        <md-input-container flex>
+                            <label>Filename</label>
+                            <input ng-model="file.name" type="text" required>
+                        </md-input-container>
+                    </span>
+          </md-card-header-text>
+          <md-button class="md-icon-button" aria-label="toggle" ng-click="vm.ShowActions()">
+            <md-icon md-font-icon="icon-close"></md-icon>
+          </md-button>
+        </md-card-header>
+        <img style="max-height: 120px" ngf-thumbnail="file" class="md-card-image">
+      </md-card>
+
+
+
+    </md-dialog-content>
+    <md-dialog-actions layout="row" style="padding-top:20px;border-top: solid 1px rgba(0, 0, 0, 0.12);">
+      <md-button ng-click="vm.closeDialog()" style="float: right" type="submit" class="md-primary md-raised" ng-disabled="vm.form.$invalid">
+        Upload
+      </md-button>
+
+      <md-button ng-click="vm.closeDialog()" style="float: right" type="submit" class="md-primary md-raised" ng-disabled="vm.form.$invalid">
+        Cancel
+      </md-button>
+
+
+    </md-dialog-actions>
+
+  </form>
+</md-dialog>

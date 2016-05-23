@@ -1,0 +1,25 @@
+zm-create-assettoolbar {
+  display: block;
+  color: whitesmoke !important;
+
+  md-list {
+    padding: 0;
+
+    .md-button {
+      margin: 6px 0;
+      //min-width: 54px;
+
+      md-icon {
+        color: whitesmoke;
+      }
+
+      .md-grid-text {
+        text-transform: none;
+      }
+    }
+  }
+
+  label {
+    color: whitesmoke !important;
+  }
+}

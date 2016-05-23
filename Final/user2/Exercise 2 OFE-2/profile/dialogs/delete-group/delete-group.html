@@ -1,0 +1,35 @@
+<md-dialog class="delete-group" aria-label="Delete Group">
+  <form class="md-inline-form">
+    <md-toolbar class="md-accent md-hue-2">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title">Delete Group</span>
+        <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog" tranlate
+                   translate-aria-label="CONTACT.CLOSE_DIALOG">
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content ms-scroll>
+      <span> Are you sure ? </span>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="space-between center">
+
+      <div layout="row">
+        <md-button ng-click="vm.closeDialog()" class="md-icon-button" aria-label="Delete"
+                   translate-attr-aria-label="CONTACT.DELETE">
+          <md-icon md-font-icon="icon-delete"></md-icon>
+          <md-tooltip><span translate="CONTACT.DELETE"></span></md-tooltip>
+        </md-button>
+      </div>
+      <div layout="row" layout-align="start center">
+        <md-button ng-click="vm.closeDialog()" style="float: right" type="submit" class="md-primary md-raised">
+          Cancel
+        </md-button>
+      </div>
+
+    </md-dialog-actions>
+  </form>
+</md-dialog>

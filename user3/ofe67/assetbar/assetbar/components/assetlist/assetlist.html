@@ -1,0 +1,35 @@
+<div layout="column" layout-margin>
+  <div class="zm-create-assetlist" ng-class="['zm-create-assetlist-col-' + vm.columns]">
+    <!-- TODO refactor to zm-create-asset component -->
+    <div ng-repeat="asset in vm.assets"
+         class="zm-create-asset">
+      <md-tooltip md-direction="top">
+        {{ $index }} - {{ ::asset.predicate | json }} - {{ ::asset.name }} - {{ ::asset.createdDate | date }}
+      </md-tooltip>
+      <div class="zm-create-asset-price md-primary-bg md-hue-3"
+           ng-switch="::asset.price.free"
+           ng-click="vm.editAsset(asset, $event)">
+        <small class="md-caption" ng-switch-when="false" notranslate>
+          {{ ::asset.price.value | currency:asset.price.currency }}
+        </small>
+        <small class="md-caption" ng-switch-when="true">FREE</small>
+      </div>
+      <md-button ng-if="asset.editable"
+                 ng-click="vm.editAsset(asset, $event)"
+                 class="md-fab md-mini"
+                 style="position: absolute; top: 50%; left: 50%; z-index: 5; margin: 0; transform: translate(-50%, -50%);"
+                 aria-label="Edit">
+        <!-- TODO add some serious styling -->
+        <md-icon md-font-icon="icon-pencil">
+
+        </md-icon>
+      </md-button>
+      <div ng-drag="true" ng-drag-data="asset">
+        <img ng-if="!asset.content.svg"
+             ng-src="{{ ::asset.thumbnail }}">
+        <div ng-if="asset.content.svg" ng-bind-html="vm.getTrustedSvg(asset.content.svg)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

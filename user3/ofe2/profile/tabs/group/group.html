@@ -1,0 +1,205 @@
+<div layout="row" layout-wrap>
+
+  <div class="cummunity" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="65" style="padding-bottom: 20px;">
+    <div class="white-bg md-whiteframe-1dp">
+
+      <header class="md-accent-bg addgrp" layout="row" layout-align="space-between center">
+         <div class="title">Groups <div class="groupovrvw text-boxed red-bg white-fg m-0">4
+        groups</div></div>
+          <!-- ADD CONTACT BUTTON --><md-button class="add-file-button md-fab md-warn inhead"
+                                             ng-click="vm.NewGroupDialog($event)" aria-label="Add file" translate
+                                             translate-attr-aria-label="CONTACT.NEW">
+          <md-icon md-font-icon="icon-plus"></md-icon>
+        </md-button>
+          <!-- / ADD CONTACT BUTTON  -->
+
+
+      </header>
+
+
+      <div class="simple-table-container md-whiteframe-1dp" ng-repeat="group in vm.groups">
+          <div class="table-title" style="display: inline-block">
+            {{group.groupname}}
+          </div>
+        <md-button ng-click="vm.collapse(group)" style="display: inline-block;float: right; margin-top: 20px;">
+          <md-icon ng-if="group.clicked == false" md-font-icon="icon-chevron-double-up"></md-icon>
+          <md-icon ng-if="group.clicked == true" md-font-icon="icon-chevron-double-down"></md-icon>
+        </md-button>
+
+        <table id="{{group.groupname}}-{{group.groupid}}" ng-if="group.clicked == true" class="simple" ms-responsive-table>
+
+            <thead>
+        <tr>
+            <th></th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Group</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Group description</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">User</span>
+              </div>
+            </th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><img class="avatar" ng-src="{{ group.avatar }}"></td>
+            <td>{{ group.groupname }}</td>
+            <td>{{ group.description }}</td>
+            <td>
+              <div ng-repeat="list in group.lists | filter:{ main: false , label: 'user'}">
+                <ul dnd-list="list.people"
+                    dnd-allowed-types="vm.allowedTypesUser"
+                    style="list-style: none;display: inline-block;width: 100%;">
+
+                  <li ng-repeat="person in list.people"
+                      dnd-draggable="person"
+                      dnd-type="person.type"
+                      dnd-disable-if="person.type == 'unknown'"
+                      dnd-moved="list.people.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      class="background-{{person.type}}"
+                      style="display: inline-block">
+
+                    <dnd-nodrag>
+                      <div dnd-handle class="handle">
+                        <img class="avatar" ng-src="{{ person.avatar }}" style="margin-bottom: 5px">
+                        <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                      </div>
+                    </dnd-nodrag>
+                  </li>
+
+                  <li class="dndPlaceholder">
+                    Drop any <strong>{{vm.allowedTypesUser.join(' or ')}}</strong> here
+                  </li>
+
+                </ul>
+              </div>
+
+            </td>
+            <td>
+              <md-button class="add-file-button md-fab md-warn"
+                         ng-click="vm.EditGroupDialog($event)" aria-label="Add file" translate
+                         translate-attr-aria-label="CONTACT.NEW"
+                         style="display: inline-block">
+                <md-icon md-font-icon="icon-border-color"></md-icon>
+              </md-button>
+              <md-button class="add-file-button md-fab md-warn"
+                         ng-click="vm.DeleteGroupDialog($event)" aria-label="Add file" translate
+                         translate-attr-aria-label="CONTACT.NEW"
+                         style="display: inline-block">
+                <md-icon md-font-icon="icon-block-helper"></md-icon>
+              </md-button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table id="{{group.groupname}}-{{group.groupid}}" ng-if="group.clicked == false" style="display: none" class="simple" ms-responsive-table>
+          <thead>
+          <tr>
+            <th></th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Group</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Group description</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">User</span>
+              </div>
+            </th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><img class="avatar" ng-src="{{ group.avatar }}"></td>
+            <td>{{ group.groupname }}</td>
+            <td>{{ group.description }}</td>
+            <td>
+              <div ng-repeat="list in group.lists | filter:{ main: false , label: 'user'}">
+                <ul dnd-list="list.people"
+                    dnd-allowed-types="vm.allowedTypesUser"
+                    style="list-style: none;display: inline-block;width: 100%;">
+
+                  <li ng-repeat="person in list.people"
+                      dnd-draggable="person"
+                      dnd-type="person.type"
+                      dnd-disable-if="person.type == 'unknown'"
+                      dnd-moved="list.people.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      class="background-{{person.type}}"
+                      style="display: inline-block">
+
+                    <dnd-nodrag>
+                      <div dnd-handle class="handle">
+                        <img class="avatar" ng-src="{{ person.avatar }}" style="margin-bottom: 5px">
+                      </div>
+                    </dnd-nodrag>
+                  </li>
+
+                  <li class="dndPlaceholder">
+                    Drop any <strong>{{vm.allowedTypesUser.join(' or ')}}</strong> here
+                  </li>
+
+                </ul>
+              </div>
+
+            </td>
+            <td>
+              <md-button class="add-file-button md-fab md-warn"
+                         ng-click="vm.AddUserDialog($event)" aria-label="Add file" translate
+                         translate-attr-aria-label="CONTACT.NEW"
+                         style="display: inline-block">
+                <md-icon md-font-icon="icon-border-color"></md-icon>
+              </md-button>
+              <md-button class="add-file-button md-fab md-warn"
+                         ng-click="vm.AddUserDialog($event)" aria-label="Add file" translate
+                         translate-attr-aria-label="CONTACT.NEW"
+                         style="display: inline-block">
+                <md-icon md-font-icon="icon-block-helper"></md-icon>
+              </md-button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="about-sidebar detailbox" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="33">
+    <div class="profile-box friends md-whiteframe-1dp white-bg" layout="column">
+      <header class="md-accent-bg" layout="row" layout-align="space-between center">
+        <div class="title" translate="PROFILE.DETAIL">Detail</div>
+      </header>
+      <md-tabs md-dynamic-height>
+        <md-tab>
+          <md-tab-label>
+            <span translate="PROFILE.USER_RIGHTS">User</span>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content class="about-tab"
+                        ng-include="'app/main/profile/tabs/subtabs/user/user.html'">
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+      </md-tabs>
+    </div>
+  </div>
+</div>

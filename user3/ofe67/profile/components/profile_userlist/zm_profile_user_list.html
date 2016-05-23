@@ -1,0 +1,19 @@
+<div class="about-sidebar detailbox" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="33">
+  <div class="profile-box friends md-whiteframe-1dp white-bg" layout="column">
+    <header class="md-accent-bg" layout="row" layout-align="space-between center">
+      <div class="title">Detail</div>
+    </header>
+    <md-tabs md-dynamic-height>
+      <md-tab>
+        <md-tab-label>
+        <span>User</span>
+        </md-tab-label>
+        <md-tab-body>
+          <md-content class="about-tab"
+          ng-include="'app/main/profile/tabs/subtabs/user/user.html'">
+        </md-content>
+        </md-tab-body>
+    </md-tab>
+    </md-tabs>
+  </div>
+</div>

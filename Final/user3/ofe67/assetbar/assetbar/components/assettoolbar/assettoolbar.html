@@ -1,0 +1,101 @@
+<!-- buttons -->
+<md-list layout="row" layout-align="space-between center" layout-fill class="md-hue-1">
+  <md-list-item flex="shrink" ng-repeat="item in vm.items">
+    <md-button md-no-ink class="md-grid-item-content" ng-click="vm.selectItem($index)">
+      <md-icon md-font-icon="{{ ::item.icon }}"></md-icon>
+      <div class="md-grid-text md-caption"> {{ ::item.label }}</div>
+    </md-button>
+  </md-list-item>
+</md-list>
+<!-- actions -->
+<div ng-switch="vm.selected" ng-show="vm.open">
+  <hr ng-if="false">
+  <div ng-switch-when="2" layout layout-padding class="md-hue-1">
+    <div flex>
+      <fieldset>
+        <legend>Filter by</legend>
+        <div layout="row">
+          <md-input-container flex>
+            <md-select ng-model="vm.filter"
+                       ng-change="vm.setFilter(vm.filter)"
+                       md-no-ink
+                       multiple
+                       placeholder="Please Select">
+              <md-option ng-repeat="filter in ::vm.filters" ng-value="filter.value">
+                {{ ::filter.name }}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+        <div layout="row" layout-wrap flex ng-if="false">
+          <div flex="50">
+            <md-checkbox aria-label="Select All"
+                         ng-checked="vm.isChecked()"
+                         md-indeterminate="vm.isIndeterminate()"
+                         ng-click="vm.toggleAll()">
+              <span ng-if="vm.isChecked()">Un-</span>Select All
+            </md-checkbox>
+          </div>
+          <div flex="100" ng-repeat="predicate in ::vm.predicates">
+            <md-checkbox ng-checked="vm.exists(predicate.value, selected)"
+                         ng-click="vm.toggle(predicate.value, selected)">
+              {{ ::predicate.name }}
+            </md-checkbox>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <div ng-switch-when="3" layout layout-padding class="md-hue-1">
+    <div flex>
+      <fieldset>
+        <legend>Sort by</legend>
+        <div layout="row">
+          <md-input-container flex>
+            <md-select ng-model="vm.predicate"
+                       ng-change="vm.setPredicate(vm.predicate)"
+                       md-no-ink
+                       aria-label="Predicate">
+              <md-option ng-repeat="predicate in ::vm.predicates" ng-value="predicate.value">
+                {{ ::predicate.name }}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container flex>
+            <md-select ng-model="vm.reverse"
+                       ng-change="vm.setReverse(vm.reverse)"
+                       md-no-ink
+                       aria-label="Reverse">
+              <md-option ng-value="false">
+                Ascending
+              </md-option>
+              <md-option ng-value="true">
+                Descending
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <div ng-switch-when="4" layout layout-padding class="md-hue-1">
+    <div flex>
+      <fieldset>
+        <legend>View by</legend>
+        <div layout="row">
+          <md-input-container flex>
+            <md-select ng-model="vm.columns"
+                       ng-change="vm.setColumns(vm.columns)"
+                       md-no-ink
+                       aria-label="Columns">
+              <md-option ng-repeat="column in [1, 2, 3]" ng-value="column">
+                {{ ::column }} columns
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <hr ng-if="false">
+</div>

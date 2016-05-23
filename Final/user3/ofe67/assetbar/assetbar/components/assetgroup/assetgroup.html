@@ -1,0 +1,44 @@
+<div layout="column" layout-padding>
+  <div flex="shrink" ng-switch="vm.group">
+
+    <div ng-switch-when="tiles" layout="row" layout-align="center center">
+      <md-button class="md-accent md-raised" flex="grow" ng-click="vm.createTile()">
+        Create new tile
+      </md-button>
+    </div>
+
+    <div ng-switch-when="backgrounds">
+      <div layout="row" layout-fill layout-wrap layout-align="left center">
+        <div flex="15"
+             ng-repeat="color in vm.colors"
+             ng-click="vm.selectColor(color)"
+             ng-style="{'background-color': color}"
+             style="margin: 2px; cursor: pointer; height: 20px;">
+          &nbsp;
+        </div>
+        <div flex="15">
+          <md-button class="md-icon-button md-primary" md-no-ink ng-click="vm.showColorPicker()"
+                     aria-label="Select Color">
+            <md-icon md-font-icon="icon-plus-circle-outline" style="color: whitesmoke;">
+
+            </md-icon>
+          </md-button>
+        </div>
+      </div>
+      <hr>
+    </div>
+
+    <div ng-switch-when="texts">
+      <div ng-drag="true" ng-drag-data="vm.headlines[0]">
+        <h1 class="md-display-2">Add headline</h1>
+      </div>
+      <div ng-drag="true" ng-drag-data="vm.headlines[1]">
+        <h2 class="md-display-1">Add subline</h2>
+      </div>
+      <div ng-drag="true" ng-drag-data="vm.headlines[2]">
+        <p class="md-headline">Add some text</p>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,662 @@
+<div layout="row" layout-wrap>
+
+  <div class="cummunity" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="65" style="padding-bottom: 20px;">
+    <div class="white-bg md-whiteframe-1dp">
+      <header class="md-accent-bg" layout="row" layout-align="space-between center">
+      <div class="title">Permissions</div>
+      </header>
+      <div class="simple-table-container md-whiteframe-1dp">
+        <div class="table-title" style="display: inline-block">
+          Profile
+        </div>
+        <md-button ng-click="vm.collapse6('permission-table-dashboard')" style="display: inline-block;float: right;margin-top: 20px;">
+          <md-icon ng-if="vm.klick6 == true" md-font-icon="icon-chevron-double-up"></md-icon>
+          <md-icon ng-if="vm.klick6 == false" md-font-icon="icon-chevron-double-down"></md-icon>
+        </md-button>
+
+        <table id="profile-table-dashboard" class="simple userstable" ms-responsive-table style="display: none">
+          <thead>
+          <tr>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Area</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Right</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">User</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Groups</span>
+              </div>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="entry in vm.permissionsP">
+            <td>{{ entry.area }}</td>
+            <td>{{ entry.right.description }}</td>
+            <td>
+              <div ng-repeat="list in entry.lists | filter:{ main: false , label: 'user'}">
+                <ul dnd-list="list.people"
+                    dnd-allowed-types="vm.allowedTypesUser"
+                    style="list-style: none;display: inline-block;width: 100%;">
+
+                  <li ng-repeat="person in list.people"
+                      dnd-draggable="person"
+                      dnd-type="person.type"
+                      dnd-disable-if="person.type == 'unknown'"
+                      dnd-moved="list.people.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      class="background-{{person.type}}"
+                      style="display: inline-block">
+
+                    <dnd-nodrag>
+                      <div dnd-handle class="handle">
+                        <img class="avatar" ng-src="{{ person.avatar }}">
+                        <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                      </div>
+                    </dnd-nodrag>
+                  </li>
+
+                  <li class="dndPlaceholder">
+                    Drop any <strong>{{vm.allowedTypesUser.join(' or ')}}</strong> here
+                  </li>
+
+                </ul>
+              </div>
+
+            </td>
+            <td>
+              <div ng-repeat="list in entry.lists | filter:{ main: false , label: 'group'}">
+                <ul dnd-list="list.people"
+                    dnd-allowed-types="vm.allowedTypesGroup"
+                    style="list-style: none;display: inline-block;width: 100%;">
+
+                  <li ng-repeat="person in list.people"
+                      dnd-draggable="person"
+                      dnd-type="person.type"
+                      dnd-disable-if="person.type == 'unknown'"
+                      dnd-moved="list.people.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      class="background-{{person.type}}"
+                      style="display: inline-block">
+
+                    <dnd-nodrag>
+                      <div dnd-handle class="handle">
+                        <img class="avatar" ng-src="{{ person.avatar }}">
+                        <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                      </div>
+                    </dnd-nodrag>
+                  </li>
+
+                  <li class="dndPlaceholder">
+                    Drop any <strong>{{vm.allowedTypesGroup.join(' or ')}}</strong> here
+                  </li>
+
+                </ul>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+    </div>
+      <div class="simple-table-container md-whiteframe-1dp">
+        <div class="table-title" style="display: inline-block">
+          my Desk
+        </div>
+        <md-button ng-click="vm.collapse1('permission-table-dashboard')" style="display: inline-block;float: right">
+          <md-icon ng-if="vm.klick1 == true" md-font-icon="icon-chevron-double-up"></md-icon>
+          <md-icon ng-if="vm.klick1 == false" md-font-icon="icon-chevron-double-down"></md-icon>
+        </md-button>
+
+        <table id="dashboard-table-dashboard" class="simple userstable" ms-responsive-table style="display: none">
+        <thead>
+        <tr>
+          <th class="secondary-text">
+            <div class="table-header">
+              <span class="column-title">Area</span>
+            </div>
+          </th>
+          <th class="secondary-text">
+            <div class="table-header">
+              <span class="column-title">Right</span>
+            </div>
+          </th>
+          <th class="secondary-text">
+            <div class="table-header">
+              <span class="column-title">User</span>
+            </div>
+          </th>
+          <th class="secondary-text">
+            <div class="table-header">
+              <span class="column-title">Groups</span>
+            </div>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="entry in vm.permissionsDB">
+          <td>{{ entry.area }}</td>
+          <td>{{ entry.right.description }}</td>
+          <td>
+            <div ng-repeat="list in entry.lists | filter:{ main: false , label: 'user'}">
+              <ul dnd-list="list.people"
+                  dnd-allowed-types="vm.allowedTypesUser"
+                  style="list-style: none;display: inline-block;width: 100%;">
+
+                <li ng-repeat="person in list.people"
+                    dnd-draggable="person"
+                    dnd-type="person.type"
+                    dnd-disable-if="person.type == 'unknown'"
+                    dnd-moved="list.people.splice($index, 1)"
+                    dnd-effect-allowed="move"
+                    class="background-{{person.type}}"
+                    style="display: inline-block">
+
+                  <dnd-nodrag>
+                    <div dnd-handle class="handle">
+                      <img class="avatar" ng-src="{{ person.avatar }}">
+                      <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                    </div>
+                  </dnd-nodrag>
+                </li>
+
+                <li class="dndPlaceholder">
+                  Drop any <strong>{{vm.allowedTypesUser.join(' or ')}}</strong> here
+                </li>
+
+              </ul>
+            </div>
+
+          </td>
+          <td>
+            <div ng-repeat="list in entry.lists | filter:{ main: false , label: 'group'}">
+              <ul dnd-list="list.people"
+                  dnd-allowed-types="vm.allowedTypesGroup"
+                  style="list-style: none;display: inline-block;width: 100%;">
+
+                <li ng-repeat="person in list.people"
+                         dnd-draggable="person"
+                         dnd-type="person.type"
+                         dnd-disable-if="person.type == 'unknown'"
+                         dnd-moved="list.people.splice($index, 1)"
+                         dnd-effect-allowed="move"
+                         class="background-{{person.type}}"
+                         style="display: inline-block">
+
+                  <dnd-nodrag>
+                    <div dnd-handle class="handle">
+                      <img class="avatar" ng-src="{{ person.avatar }}">
+                      <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                    </div>
+                  </dnd-nodrag>
+                </li>
+
+                <li class="dndPlaceholder">
+                  Drop any <strong>{{vm.allowedTypesGroup.join(' or ')}}</strong> here
+                </li>
+
+              </ul>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="simple-table-container md-whiteframe-1dp">
+        <div class="table-title" style="display: inline-block">
+          File Manager
+        </div>
+        <md-button ng-click="vm.collapse5('permission-table-dashboard')" style="display: inline-block;float: right">
+          <md-icon ng-if="vm.klick5 == true" md-font-icon="icon-chevron-double-up"></md-icon>
+          <md-icon ng-if="vm.klick5 == false" md-font-icon="icon-chevron-double-down"></md-icon>
+        </md-button>
+
+        <table id="file-manager-table-dashboard" class="simple userstable" ms-responsive-table style="display: none">
+          <thead>
+          <tr>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Area</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Right</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">User</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Groups</span>
+              </div>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="entry in vm.permissionsF">
+            <td>{{ entry.area }}</td>
+            <td>{{ entry.right.description }}</td>
+            <td>
+              <div ng-repeat="list in entry.lists | filter:{ main: false , label: 'user'}">
+                <ul dnd-list="list.people"
+                    dnd-allowed-types="vm.allowedTypesUser"
+                    style="list-style: none;display: inline-block;width: 100%;">
+
+                  <li ng-repeat="person in list.people"
+                      dnd-draggable="person"
+                      dnd-type="person.type"
+                      dnd-disable-if="person.type == 'unknown'"
+                      dnd-moved="list.people.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      class="background-{{person.type}}"
+                      style="display: inline-block">
+
+                    <dnd-nodrag>
+                      <div dnd-handle class="handle">
+                        <img class="avatar" ng-src="{{ person.avatar }}">
+                        <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                      </div>
+                    </dnd-nodrag>
+                  </li>
+
+                  <li class="dndPlaceholder">
+                    Drop any <strong>{{vm.allowedTypesUser.join(' or ')}}</strong> here
+                  </li>
+
+                </ul>
+              </div>
+
+            </td>
+            <td>
+              <div ng-repeat="list in entry.lists | filter:{ main: false , label: 'group'}">
+                <ul dnd-list="list.people"
+                    dnd-allowed-types="vm.allowedTypesGroup"
+                    style="list-style: none;display: inline-block;width: 100%;">
+
+                  <li ng-repeat="person in list.people"
+                      dnd-draggable="person"
+                      dnd-type="person.type"
+                      dnd-disable-if="person.type == 'unknown'"
+                      dnd-moved="list.people.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      class="background-{{person.type}}"
+                      style="display: inline-block">
+
+                    <dnd-nodrag>
+                      <div dnd-handle class="handle">
+                        <img class="avatar" ng-src="{{ person.avatar }}">
+                        <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                      </div>
+                    </dnd-nodrag>
+                  </li>
+
+                  <li class="dndPlaceholder">
+                    Drop any <strong>{{vm.allowedTypesGroup.join(' or ')}}</strong> here
+                  </li>
+
+                </ul>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="simple-table-container md-whiteframe-1dp">
+        <div class="table-title" style="display: inline-block">
+          MANAGE.
+        </div>
+        <md-button ng-click="vm.collapse3('manage-table-dashboard')" style="display: inline-block;float: right">
+          <md-icon ng-if="vm.klick3 == true" md-font-icon="icon-chevron-double-up"></md-icon>
+          <md-icon ng-if="vm.klick3 == false" md-font-icon="icon-chevron-double-down"></md-icon>
+        </md-button>
+
+        <table id="manage-table-dashboard" class="simple userstable" ms-responsive-table style="display: none">
+          <thead>
+          <tr>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Area</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Right</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">User</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Groups</span>
+              </div>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="entry in vm.permissionsM">
+            <td>{{ entry.area }}</td>
+            <td>{{ entry.right.description }}</td>
+            <td>
+              <div ng-repeat="list in entry.lists | filter:{ main: false , label: 'user'}">
+                <ul dnd-list="list.people"
+                    dnd-allowed-types="vm.allowedTypesUser"
+                    style="list-style: none;display: inline-block;width: 100%;">
+
+                  <li ng-repeat="person in list.people"
+                      dnd-draggable="person"
+                      dnd-type="person.type"
+                      dnd-disable-if="person.type == 'unknown'"
+                      dnd-moved="list.people.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      class="background-{{person.type}}"
+                      style="display: inline-block">
+
+                    <dnd-nodrag>
+                      <div dnd-handle class="handle">
+                        <img class="avatar" ng-src="{{ person.avatar }}">
+                        <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                      </div>
+                    </dnd-nodrag>
+                  </li>
+
+                  <li class="dndPlaceholder">
+                    Drop any <strong>{{list.allowedTypes.join(' or ')}}</strong> here
+                  </li>
+
+                </ul>
+              </div>
+
+            </td>
+            <td>
+              <div ng-repeat="list in entry.lists | filter:{ main: false , label: 'group'}">
+                <ul dnd-list="list.people"
+                    dnd-allowed-types="vm.allowedTypesGroup"
+                    style="list-style: none;display: inline-block;width: 100%;">
+
+                  <li ng-repeat="person in list.people"
+                      dnd-draggable="person"
+                      dnd-type="person.type"
+                      dnd-disable-if="person.type == 'unknown'"
+                      dnd-moved="list.people.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      class="background-{{person.type}}"
+                      style="display: inline-block">
+
+                    <dnd-nodrag>
+                      <div dnd-handle class="handle">
+                        <img class="avatar" ng-src="{{ person.avatar }}">
+                        <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                      </div>
+                    </dnd-nodrag>
+                  </li>
+
+                  <li class="dndPlaceholder">
+                    Drop any <strong>{{list.allowedTypes.join(' or ')}}</strong> here
+                  </li>
+
+                </ul>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="simple-table-container md-whiteframe-1dp">
+        <div class="table-title" style="display: inline-block">
+          CREATE.
+        </div>
+        <md-button ng-click="vm.collapse2('create-table-dashboard')" style="display: inline-block; float: right">
+          <md-icon ng-if="vm.klick2 == true" md-font-icon="icon-chevron-double-up"></md-icon>
+          <md-icon ng-if="vm.klick2 == false" md-font-icon="icon-chevron-double-down"></md-icon>
+        </md-button>
+
+        <table id="create-table-dashboard" class="simple userstable" ms-responsive-table style="display: none">
+          <thead>
+          <tr>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Area</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Right</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">User</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Groups</span>
+              </div>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="entry in vm.permissionsC">
+            <td>{{ entry.area }}</td>
+            <td>{{ entry.right.description }}</td>
+            <td>
+              <div ng-repeat="list in entry.lists | filter:{ main: false , label: 'user'}">
+                <ul dnd-list="list.people"
+                    dnd-allowed-types="vm.allowedTypesUser"
+                    style="list-style: none;display: inline-block;width: 100%;">
+
+                  <li ng-repeat="person in list.people"
+                      dnd-draggable="person"
+                      dnd-type="person.type"
+                      dnd-disable-if="person.type == 'unknown'"
+                      dnd-moved="list.people.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      class="background-{{person.type}}"
+                      style="display: inline-block">
+
+                    <dnd-nodrag>
+                      <div dnd-handle class="handle">
+                        <img class="avatar" ng-src="{{ person.avatar }}">
+                        <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                      </div>
+                    </dnd-nodrag>
+                  </li>
+
+                  <li class="dndPlaceholder">
+                    Drop any <strong>{{list.allowedTypes.join(' or ')}}</strong> here
+                  </li>
+
+                </ul>
+              </div>
+
+            </td>
+            <td>
+              <div ng-repeat="list in entry.lists | filter:{ main: false , label: 'group'}">
+                <ul dnd-list="list.people"
+                    dnd-allowed-types="vm.allowedTypesGroup"
+                    style="list-style: none;display: inline-block;width: 100%;">
+
+                  <li ng-repeat="person in list.people"
+                      dnd-draggable="person"
+                      dnd-type="person.type"
+                      dnd-disable-if="person.type == 'unknown'"
+                      dnd-moved="list.people.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      class="background-{{person.type}}"
+                      style="display: inline-block">
+
+                    <dnd-nodrag>
+                      <div dnd-handle class="handle">
+                        <img class="avatar" ng-src="{{ person.avatar }}">
+                        <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                      </div>
+                    </dnd-nodrag>
+                  </li>
+
+                  <li class="dndPlaceholder">
+                    Drop any <strong>{{list.allowedTypes.join(' or ')}}</strong> here
+                  </li>
+
+                </ul>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="simple-table-container md-whiteframe-1dp">
+        <div class="table-title" style="display: inline-block">
+          SHARE.
+        </div>
+        <md-button ng-click="vm.collapse4('share-table-dashboard')" style="display: inline-block;float: right">
+          <md-icon ng-if="vm.klick4 == true" md-font-icon="icon-chevron-double-up"></md-icon>
+          <md-icon ng-if="vm.klick4 == false" md-font-icon="icon-chevron-double-down"></md-icon>
+        </md-button>
+
+        <table id="share-table-dashboard" class="simple userstable" ms-responsive-table style="display: none">
+          <thead>
+          <tr>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Area</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Right</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">User</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Groups</span>
+              </div>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="entry in vm.permissionsS">
+            <td>{{ entry.area }}</td>
+            <td>{{ entry.right.description }}</td>
+            <td>
+              <div ng-repeat="list in entry.lists | filter:{ main: false , label: 'user'}">
+                <ul dnd-list="list.people"
+                    dnd-allowed-types="vm.allowedTypesUser"
+                    style="list-style: none;display: inline-block;width: 100%;">
+
+                  <li ng-repeat="person in list.people"
+                      dnd-draggable="person"
+                      dnd-type="person.type"
+                      dnd-disable-if="person.type == 'unknown'"
+                      dnd-moved="list.people.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      class="background-{{person.type}}"
+                      style="display: inline-block">
+
+                    <dnd-nodrag>
+                      <div dnd-handle class="handle">
+                        <img class="avatar" ng-src="{{ person.avatar }}">
+                        <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                      </div>
+                    </dnd-nodrag>
+                  </li>
+
+                  <li class="dndPlaceholder">
+                    Drop any <strong>{{list.allowedTypes.join(' or ')}}</strong> here
+                  </li>
+
+                </ul>
+              </div>
+
+            </td>
+            <td>
+              <div ng-repeat="list in entry.lists | filter:{ main: false , label: 'group'}">
+                <ul dnd-list="list.people"
+                    dnd-allowed-types="vm.allowedTypesGroup"
+                    style="list-style: none;display: inline-block;width: 100%;">
+
+                  <li ng-repeat="person in list.people"
+                      dnd-draggable="person"
+                      dnd-type="person.type"
+                      dnd-disable-if="person.type == 'unknown'"
+                      dnd-moved="list.people.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      class="background-{{person.type}}"
+                      style="display: inline-block">
+
+                    <dnd-nodrag>
+                      <div dnd-handle class="handle">
+                        <img class="avatar" ng-src="{{ person.avatar }}">
+                        <md-tooltip><span>{{person.name}}</span></md-tooltip>
+                      </div>
+                    </dnd-nodrag>
+                  </li>
+
+                  <li class="dndPlaceholder">
+                    Drop any <strong>{{list.allowedTypes.join(' or ')}}</strong> here
+                  </li>
+
+                </ul>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <div class="about-sidebar" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="33" style="padding-left: 15px;">
+    <div class="profile-box friends md-whiteframe-1dp white-bg" layout="column" >
+      <header class="md-accent-bg" layout="row" layout-align="space-between center">
+        <div class="title" translate="PROFILE.DETAIL">Detail</div>
+      </header>
+      <md-tabs md-dynamic-height>
+        <md-tab>
+          <md-tab-label>
+            <span translate="PROFILE.USER_RIGHTS">User</span>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content class="about-tab"
+                        ng-include="'app/main/profile/tabs/subtabs/user/user.html'">
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+        <md-tab>
+          <md-tab-label>
+            <span translate="PROFILE.GROUP_RIGHTS">Group</span>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content class="about-tab"
+                        ng-include="'app/main/profile/tabs/subtabs/group/group.html'">
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+      </md-tabs>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-1dp md-primary-bg md-hue-1"
+            md-component-id="assetbar"
+            md-disable-backdrop
+            zm-click-outside="vm.clearState()" zm-active="false">
+  <zm-create-assettoolbar></zm-create-assettoolbar>
+  <div ui-view="assets"></div>
+  <zm-create-assetlist on-edit-asset="vm.editAsset(asset)"
+                       class="scrollable"
+                       ms-scroll>
+  </zm-create-assetlist>
+</md-sidenav>
+
+<div class="md-primary-bg" ng-show="vm.isOpen()"
+     style="position: fixed; top: 0; left: 0; z-index: 100; width: 48px; height: 48px;"
+     ng-style="{ 'left': vm.isOpen() ? 410 : 0 }">
+  <md-button class="md-primary md-raised md-no-ink md-icon-button" ng-click="vm.closeAssetbar()"
+             aria-label="Hide Assets">
+    <md-icon md-font-icon="icon-chevron-left">
+    </md-icon>
+  </md-button>
+  <md-button class="md-primary md-raised md-no-ink md-icon-button" ng-click="vm.openAssetbar()" aria-label="Show Assets"
+             ng-if="false">
+    <md-icon md-font-icon="icon-chevron-right" ng-hide="vm.isOpen()">
+    </md-icon>
+  </md-button>
+</div>

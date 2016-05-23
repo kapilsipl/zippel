@@ -1,0 +1,92 @@
+#profile {
+
+  header.addgrp {
+    padding: 0 16px;
+    height: 55px;
+
+    .title {
+      font-size: 17px;
+      display: inline-flex;
+
+      .groupovrvw {
+        margin-left: 15px;
+      }
+    }
+
+    .add-file-button.inhead {
+      height: 50px;
+      width: 50px;
+      margin-top: 30px;
+      margin-right: 10px
+    }
+
+  }
+
+  table {
+
+    &.userstable {
+
+
+
+        tbody {
+
+          td {
+            padding-top: 3px;
+            padding-bottom: 3px;
+          }
+
+        }
+
+      }
+
+    }
+
+
+  md-card {
+
+    &.nowhiteframe{
+      box-shadow: none;
+    }
+
+
+    span.md-headline {
+      margin-top: -20px;
+      padding-bottom: 15px;
+
+    }
+
+    .info-line {
+
+      padding-top: 20px;
+
+      .title {
+        font-size: 12px;
+        font-weight: 500;
+        padding-bottom: 4px;
+        color: #B5B5B5;
+        display: inline-table;
+        width: 150px;
+
+      }
+
+      .info {
+        font-size: 15px;
+        line-height: 30px;
+        display: inline-table;
+
+      }
+
+    }
+  }
+  .detailbox {
+    padding-left: 15px;
+
+    @media all and (max-width: 980px) {
+
+      padding-left: 0;
+
+    }
+
+  }
+
+}

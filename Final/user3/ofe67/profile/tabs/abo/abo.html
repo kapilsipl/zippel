@@ -1,0 +1,402 @@
+<div layout="row" class="pt-respon" layout-wrap>
+
+
+  <div class="about-sidebar" layout="column" flex="100" flex-gt-sm="100" flex-gt-md="50"
+       style="padding-right:20px;height: auto">
+    <div class="profile-box friends md-whiteframe-1dp" layout="column">
+
+      <header class="md-accent-bg" layout="row" layout-align="space-between center">
+        <div class="title" translate="PROFILE.CUR-ABO">Your Plan</div>
+      </header>
+      <div class="content" layout="row" layout-wrap style="height: auto;">
+        <div class="myaboleft" flex-gt-md="100">
+          <ul class="abomy">
+            <li>
+              <div>Selected Plan</div>
+              <div class="planchosen"><span>Enterprise </span>
+              </div>
+            </li>
+            <li>
+              <div>Users</div>
+              <div class="planchosen"><span>10 / 25</span>
+              </div>
+            </li>
+            <li>
+              <div>Storage</div>
+              <div class="planchosen"><span>74.2 GB / 1 TB</span></div>
+              <md-button  ng-click="vm.UpgradeDialog($event, 0)" aria-label="Upgrade" style="text-transform: none; display: inline-table;color: #84B05B; float: right;">Upgrade
+                now
+              </md-button>
+
+
+
+            </li>
+          </ul>
+        </div>
+        <div class="border-bottom" style="width: 95%;margin: 0 auto;"> </div>
+        <div class="myaboright" flex-gt-md="100">
+          <div class="aboadditional">Additional Services</div>
+          <ul class="abopack">
+            <li>
+              <div>
+                <md-button class="md-icon-button" translate>
+                  <md-icon md-font-icon="icon-cancel" aria-label="remove"></md-icon>
+                </md-button>
+                Users (+10)
+              </div>
+            </li>
+            <li>
+              <div>
+                <md-button class="md-icon-button" translate>
+                  <md-icon md-font-icon="icon-cancel" aria-label="remove"></md-icon>
+                </md-button>
+                Memory (+500 GB)
+              </div>
+            </li>
+            <li>
+              <div>
+                <md-button class="md-icon-button" translate>
+                  <md-icon md-font-icon="icon-cancel" aria-label="remove"></md-icon>
+                </md-button>
+                Upload service for product data and media assets
+              </div>
+              </li>
+              <md-button ng-click="vm.UpgradeDialog($event, 1)" aria-label="Upgrade" style="text-transform: none; display: inline-table;color: #84B05B;float: right">Upgrade
+                now
+              </md-button>
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-sidebar" layout="column" flex="100" flex-gt-sm="100" flex-gt-md="50"
+       style="padding-right:20px;height: auto">
+    <div class="profile-box friends md-whiteframe-1dp" layout="column">
+
+
+      <md-tabs class="md-accent-bg" md-dynamic-height style="color: #FFFFFF; height: 54px;padding-top: 5px">
+        <md-tab>
+          <md-tab-label>
+            <span class="plantab" style="margin-top: -5px">Storage</span>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content>
+              <!--       <header class="md-accent-bg" layout="row" layout-align="space-between center">
+                       <div class="title">Storage</div>
+                     </header>-->
+              <div class="content" layout="row" layout-wrap style="height: auto;">
+                <div class="invoices" flex-gt-md="100">
+                  <md-tabs class="no-radius" md-dynamic-height>
+                    <md-tab label="{{tab.label}}" ng-repeat="tab in vm.widget4.tabs">
+
+                      <div layout="row" layout-align="start center" layout-wrap>
+
+                        <div flex="100" flex-gt-xs="100" flex-gt-md="100"
+                             ng-repeat="group in tab.groups">
+                          <div class="h2 m-16 pb-16 border-bottom">{{group.title}}</div>
+
+                          <div class="p-16 pb-32" ng-repeat="data in group.data">
+                            <div class="pb-8" layout="row" layout-align="space-between start">
+                              <span class="h3">{{data.title}}</span>
+                              <span class="h3 secondary-text font-weight-500" style="color:grey">{{data.value}}%</span>
+                            </div>
+                            <md-progress-linear class="{{data.progressColor}}" md-mode="determinate"
+                                                value="{{data.value}}"></md-progress-linear>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </md-tab>
+                  </md-tabs>
+
+                </div>
+
+              </div>
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+        <md-tab>
+          <md-tab-label>
+            <span class="plantab">Users</span>
+          </md-tab-label>
+          <md-tab-body>
+            <md-content>
+              <div class="content" layout="row" layout-wrap style="height: auto;">
+                <div class="invoices" flex-gt-md="100">
+                  <div ng-repeat="list in vm.lists | filter:{ main: true, label: 'users'}">
+                    <div class="panel-body">
+                      <ul>
+
+                        <li ng-repeat="person in list.people" class="background-{{person.type}}">
+
+
+                          <div class="contactplan">
+                            <img class="avatar" ng-src="{{ person.avatar }}">
+                            <div class="name">
+                              <span>{{person.name}}</span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </md-content>
+          </md-tab-body>
+        </md-tab>
+      </md-tabs>
+
+
+    </div>
+  </div>
+
+  <div class="about-sidebar" layout="column" flex="100" flex-gt-sm="100" flex-gt-md="100"
+       style="padding-right:20px;max-height: auto;">
+    <div class="profile-box friends md-whiteframe-1dp" layout="column">
+      <header class="md-accent-bg" layout="row" layout-align="space-between center">
+        <div class="title" translate="PROFILE.SPENT">Spent</div>
+      </header>
+      <div class="content" layout="row" layout-wrap style="height: auto;">
+        <v-accordion class="vAccordion--default invoices" style="min-height: 0">
+          <v-pane expanded>
+            <v-pane-header>Last invoice</v-pane-header>
+            <v-pane-content>
+              <div class="planchosen"><span>March 2016 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+            </v-pane-content>
+          </v-pane>
+          <v-pane>
+            <v-pane-header>Invoices of the current year</v-pane-header>
+            <v-pane-content>
+
+              <div class="planchosen"><span>February 2016</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+              <div class="planchosen"><span>January 2016 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+
+            </v-pane-content>
+          </v-pane>
+          <v-pane>
+            <v-pane-header>Invoices of 2015</v-pane-header>
+            <v-pane-content>
+
+
+              <div class="planchosen"><span>December 2015</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>November 2015</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>October 2015</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>September 2015</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>August 2015</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+              <div class="planchosen"><span>July 2015 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>June 2015 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>May 2015 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>April 2015 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>March 2015 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>February 2015 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>January 2015 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+
+            </v-pane-content>
+          </v-pane>
+          <v-pane>
+            <v-pane-header>Invoices of 2014</v-pane-header>
+            <v-pane-content>
+
+              <div class="planchosen"><span>December 2014</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>November 2014</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>October 2014</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>September 2014</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>August 2014</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+              <div class="planchosen"><span>July 2014 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>June 2014 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>May 2014 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>April 2014 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>March 2014 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>February 2014 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>January 2014 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+            </v-pane-content>
+          </v-pane>
+          <v-pane>
+            <v-pane-header>Invoices of 2013</v-pane-header>
+            <v-pane-content>
+
+              <div class="planchosen"><span>December 2013</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>November 2013</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>October 2013</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>September 2013</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>August 2013</span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+              <div class="planchosen"><span>July 2013 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>June 2013 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>May 2013 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>April 2013 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>March 2013 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>February 2013 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+
+              <div class="planchosen"><span>January 2013 </span>
+                <md-button class="invoicebutton">display</md-button>
+              </div>
+            </v-pane-content>
+          </v-pane>
+        </v-accordion>
+
+
+      </div>
+      <div class="content" layout="row" layout-wrap style="height: auto">
+        <div class="invoices" flex-gt-md="100">
+          <div class="pb-32 border-bottom">
+            <nvd3 class="h-400 remove-x-lines remove-opacity"
+                  options="vm.widget1.options"
+                  data="vm.widget1.data"></nvd3>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="about-sidebar" layout="column" flex="100" flex-gt-sm="100" flex-gt-md="100"
+       style="padding-right:20px;max-height: auto;">
+    <div class="profile-box friends md-whiteframe-1dp" layout="column">
+      <header class="md-accent-bg" layout="row" layout-align="space-between center">
+        <div class="title">Terminate contract</div>
+      </header>
+      <div class="content" layout="row" layout-wrap style="height: auto;">
+        <v-accordion class="vAccordion--default invoices" style="min-height: 0;padding:15px;">
+          <v-pane>
+            <v-pane-header>Terminate contract and delete my account</v-pane-header>
+            <v-pane-content>
+
+
+              <div class="deletetext"><span><p><b>Are you sure you want to terminate your contract?</b></p>
+                <p>We´ll be sad to see you go. If you have an issue and think we might be able to help, please <a href="http://www.transparentcom.com/en/support/contact/" target="_blank">contact us</a> first.</p>
+                <p>Once you terminate your contract, your data will be deleted from our servers at the end of the remaining contract period.</p> <br>
+              <p>Why are you leaving?</p></span>
+                <md-select name="gender" ng-model="vm.about.work.delete">
+                  <md-option ng-value="opt" ng-repeat="opt in vm.about.delete"
+                             ng-selected="{{ opt.selected == true }}">{{opt.name}}
+                  </md-option>
+                </md-select>
+                <md-button class="invoicebutton" ng-click="vm.terminate()"><b>Terminate now</b></md-button>
+              </div>
+            </v-pane-content>
+          </v-pane>
+        </v-accordion>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
