@@ -1,14 +1,17 @@
 (function () {
+
   'use strict';
+
   angular.module('groupApp')
   .service('zmProfileGroupService',zmProfileGroupService);
 
   /** @ngInject */
-  zmProfileGroupService.$inject = ['$http','$q','zmProfileGroupRestService'];
+  zmProfileGroupService.$inject = ['$http','$log','$q','zmProfileGroupRestService'];
   
   /** zmProfileGroupService is service for CURD with dependinecies */
-  function zmProfileGroupService($http,$q,zmProfileGroupRestService){
+  function zmProfileGroupService($http,$log,$q,zmProfileGroupRestService){
     var vm = this;
+    var defer = $q.defer();
     /** Methods */
     vm.readListOfGroups = readListOfGroups;
     vm.readGroupDetail = readGroupDetail;
@@ -18,102 +21,125 @@
     vm.addUserToGroup = addUserToGroup;
     vm.removeUserFromGroup = removeUserFromGroup;
 
+
     /**
-    * Read list of group
-    */
-    function readListOfGroups() {
-     return zmProfileGroupRestService.readListOfGroups().then(function (response) {
-         $log("server responded")
-         defer.resolve(response.data);
-     }, function(failure) {
+     * @name readListOfGroups
+     * @param 
+     * @description Read list from group
+     * @return {[data]}
+     */
+     function readListOfGroups() {
+        zmProfileGroupRestService.readListOfGroups().then(function (response) {
+           $log("server responded")
+           defer.resolve(response.data);
+       }, function(failure) {
         $log.error("server did not respond");
-        return $q.reject(failure); 
+        return defer.reject(failure); 
     });
-     return defer.promise;
+        return defer.promise;
     };
 
     /**
-    * Read group details
-    */
-    function readGroupDetail(id) {
-     return zmProfileGroupRestService.readGroupDetail().then(function (response) {
+     * @name readGroupDetail
+     * @param 
+     * @description Read group detail
+     * @return {[data]}
+     */
+     function readGroupDetail(id) {
+       zmProfileGroupRestService.readGroupDetail().then(function (response) {
         $log("server responded")
         defer.resolve(response.data);
     }, function(failure) {
         $log.error("server did not respond");
-        return $q.reject(failure); 
-    });
-     return defer.promise;
-    };
-
-    /**
-    * Add group
-    */
-    function addGroup(data) {
-      return zmProfileGroupRestService.addGroup().then(function (response) {
-        $log("server responded")
-        defer.resolve(response.data);
-    }, function(failure) {
-        $log.error("server did not respond");
-        return $q.reject(failure); 
-    });
-      return defer.promise;
-    };
-
-    /**
-    * Update group
-    */
-    function updateGroup(data) {
-       return zmProfileGroupRestService.updateGroup(data).then(function (response) {
-        $log("server responded")
-        defer.resolve(response.data);
-    }, function(failure) {
-        $log.error("server did not respond");
-        return $q.reject(failure); 
+        return defer.reject(failure); 
     });
        return defer.promise;
-    };
+   };
 
     /**
-    * Delete group
-    */
-    function deleteGroup(id) {
-      return zmProfileGroupRestService.deleteGroup(id).then(function (response) {
+     * @name addGroup
+     * @param data
+     * @description Create a new group
+     * @return {[data]}
+     */
+     function addGroup(data) {
+      zmProfileGroupRestService.addGroup().then(function (response) {
         $log("server responded")
         defer.resolve(response.data);
     }, function(failure) {
         $log.error("server did not respond");
-        return $q.reject(failure); 
+        return defer.reject(failure); 
     });
       return defer.promise;
-    };
+  };
 
     /**
-    * Add user to group
-    */
-    function addUserToGroup(data) {
-      return zmProfileGroupRestService.addUserToGroup(id,data).then(function (response) {
-         $log("server responded")
-         defer.resolve(response.data);
-     }, function(failure) {
-         $log.error("server did not respond");
-         return $q.reject(failure); 
-     });
-      return defer.promise;
-    };
+     * @name updateGroup
+     * @param data
+     * @description Update group
+     * @return {[data]}
+     */
+     function updateGroup(data) {
+         zmProfileGroupRestService.updateGroup(data).then(function (response) {
+            $log("server responded")
+            defer.resolve(response.data);
+        }, function(failure) {
+            $log.error("server did not respond");
+            return defer.reject(failure); 
+        });
+         return defer.promise;
+     };
 
     /**
-    * Remove user from group
-    */
-    function removeUserFromGroup(id,data) {
-      return zmProfileGroupRestService.removeUserFromGroup(id,data).then(function (response) {
-         $log("server responded")
-         defer.resolve(response.data);
-     }, function(failure) {
-         $log.error("server did not respond");
-         return $q.reject(failure); 
-     });
+     * @name deleteGroup
+     * @param id
+     * @description Delete group
+     * @return {[data]}
+     */
+     function deleteGroup(id) {
+      zmProfileGroupRestService.deleteGroup(id).then(function (response) {
+        $log("server responded")
+        defer.resolve(response.data);
+    }, function(failure) {
+        $log.error("server did not respond");
+        return defer.reject(failure); 
+    });
       return defer.promise;
-    };
- };
+  };
+
+    /**
+     * @name addUserToGroup
+     * @param data
+     * @description Add user to group
+     * @return {[data]}
+     */
+     function addUserToGroup(data) {
+      zmProfileGroupRestService.addUserToGroup(id,data).then(function (response) {
+       $log("server responded")
+       defer.resolve(response.data);
+   }, function(failure) {
+       $log.error("server did not respond");
+       return defer.reject(failure); 
+   });
+      return defer.promise;
+  };
+
+    /**
+     * @name removeUserFromGroup
+     * @param id,data
+     * @description Remove user from group
+     * @return {[data]}
+     */
+     function removeUserFromGroup(id,data) {
+      zmProfileGroupRestService.removeUserFromGroup(id,data).then(function (response) {
+       $log("server responded")
+       defer.resolve(response.data);
+   }, function(failure) {
+       $log.error("server did not respond");
+       return defer.reject(failure); 
+   });
+      return defer.promise;
+  };
+};
+
 })();

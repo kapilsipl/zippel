@@ -4,10 +4,10 @@
   .service('zmProfileGroupRestService',zmProfileGroupRestService);
 
   /** @ngInject */
-  zmProfileGroupRestService.$inject = ['$http','$q'];
+  zmProfileGroupRestService.$inject = ['$http','$log','$q'];
 
   /** zmProfileGroupRestService is rets service for CURD */
-  function zmProfileGroupRestService($http,$q){
+  function zmProfileGroupRestService($http,$q,$log){
     var base_url = 'group.json';
     var vm = this;
     /** Methods */
@@ -19,88 +19,109 @@
     vm.addUserToGroup = addUserToGroup;
     vm.removeUserFromGroup = removeUserFromGroup;
 
-      /**
-       * Read list of group
-       */
+     /**
+     * @name readListOfGroups
+     * @param 
+     * @description Read list from group
+     * @return {[data]}
+     */
        function readListOfGroups() {
-        var deferred = $q.defer();
+        var defer = $q.defer();
         $http.get(base_url)
         .success(function(data) {
-          deferred.resolve(data);
-        }).error(deferred.reject);
-        return deferred.promise;
+          defer.resolve(data);
+        }).error(defer.reject);
+        return defer.promise;
       };
 
-      /**
-       * Read group details
-       */
+     /**
+     * @name readGroupDetail
+     * @param 
+     * @description Read group detail
+     * @return {[data]}
+     */
       function readGroupDetail(id) {
-        var deferred = $q.defer();
+        var defer = $q.defer();
         $http.get(base_url+'/' + id)
         .success(function(data) {
-          deferred.resolve(data);
-        }).error(deferred.reject);
-        return deferred.promise;
+          defer.resolve(data);
+        }).error(defer.reject);
+        return defer.promise;
       };
 
-      /**
-       * Add new group
-       */
+     /**
+     * @name addGroup
+     * @param data
+     * @description Create a new group
+     * @return {[data]}
+     */
       function addGroup(data) {
-        var deferred = $q.defer();
+        var defer = $q.defer();
         $http.post(base_url, data)
         .success(function(data) {
-          deferred.resolve(data);
-        }).error(deferred.reject);
-        return deferred.promise;
+          defer.resolve(data);
+        }).error(defer.reject);
+        return defer.promise;
       };
 
-      /**
-       * update group
-       */
+     /**
+     * @name updateGroup
+     * @param data
+     * @description Update group
+     * @return {[data]}
+     */
       function updateGroup(data) {
-        var deferred = $q.defer();
+        var defer = $q.defer();
         $http.put(base_url+'/' + id, data)
         .success(function(data) {
-          deferred.resolve(data);
-        }).error(deferred.reject);
-        return deferred.promise;
+          defer.resolve(data);
+        }).error(defer.reject);
+        return defer.promise;
       };
 
-      /**
-       * Delete group
-       */
+     /**
+     * @name deleteGroup
+     * @param id
+     * @description Delete group
+     * @return {[data]}
+     */
       function deleteGroup(id) {
-        var deferred = $q.defer();
+        var defer = $q.defer();
         $http.delete(base_url+'/' + id)
         .success(function(data) {
-          deferred.resolve(data);
-        }).error(deferred.reject);
-        return deferred.promise;
+          defer.resolve(data);
+        }).error(defer.reject);
+        return defer.promise;
       };
       
-      /**
-       * Add user to group
-       */
+     /**
+     * @name addUserToGroup
+     * @param data
+     * @description Add user to group
+     * @return {[data]}
+     */
       function addUserToGroup(id,data) {
-        var deferred = $q.defer();
+        var defer = $q.defer();
         $http.post(base_url, data)
         .success(function(data) {
-          deferred.resolve(data);
-        }).error(deferred.reject);
-        return deferred.promise;
+          defer.resolve(data);
+        }).error(defer.reject);
+        return defer.promise;
       };
 
-      /**
-       * Remove user from group
-       */
+     /**
+     * @name removeUserFromGroup
+     * @param id,data
+     * @description Remove user from group
+     * @return {[data]}
+     */
       function removeUserFromGroup(id,data) {
-        var deferred = $q.defer();
+        var defer = $q.defer();
         $http.delete(base_url, data)
         .success(function(data) {
-          deferred.resolve(data);
-        }).error(deferred.reject);
-        return deferred.promise;
+          defer.resolve(data);
+        }).error(defer.reject);
+        return defer.promise;
       };
     }
   })();

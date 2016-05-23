@@ -11,9 +11,11 @@ function groupCtrl(zmProfileGroupService) {
 	vm.user = {
 		id:''
 	};
+	/** Get group list from service */
 	zmProfileGroupService.readListOfGroups(function(data){
 		vm.group = data;
 	});
+	/** Get user list from service */
 	zmProfileGroupService.readGroupDetail(function(id){
 		vm.users = data.lists.people;
 	});
