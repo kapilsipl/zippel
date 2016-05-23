@@ -1,2 +1,2 @@
 # zippel
-Angular project is to integrate group section in profile section.
+Angular project is to integrate group module in profile section.
